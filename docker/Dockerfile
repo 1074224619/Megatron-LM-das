@@ -61,7 +61,7 @@ ARG RCCL_GPU_TARGETS="gfx936 gfx938"
 RUN mkdir -p /tmp/hsastub && cd /tmp/hsastub && : > empty.c && \
     gcc -shared -fPIC -Wl,-soname,libhsa-runtime64.so.1 -o libhsa-runtime64.so.1 empty.c && \
     ln -sf libhsa-runtime64.so.1 libhsa-runtime64.so && \
-    git clone ${RCCL_TEST} /opt/rccl-test && \
+    git clone ${{RCCL_TEST}} /opt/rccl-test && \
     cd /opt/rccl-test && git checkout ${RCCL_TESTS_COMMIT} && \
     LIBRARY_PATH=/tmp/hsastub:${LIBRARY_PATH} \
     make HIP_HOME=/opt/dtk \
